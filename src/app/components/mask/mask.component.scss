@@ -1,0 +1,24 @@
+.color-btn-black {
+    display:block;
+    height: 100px;
+    width: 100px;
+    border-radius: 50%;
+    border-color: transparent;
+    background-color: black
+    
+  }
+
+.color-btn-white {
+    display:block;
+    height: 100px;
+    width: 100px;
+    border-radius: 50%;
+    border-color: transparent;
+    border: 1px solid black;
+    background-color: white
+}
+
+.canvas{
+  width: 500px;
+  height: 500px;
+}

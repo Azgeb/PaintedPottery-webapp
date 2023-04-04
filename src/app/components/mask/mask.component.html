@@ -1,0 +1,14 @@
+<div style="display: flex; flex-direction: row; background-color: brown;">
+    <div style="flex-grow: 1;"></div>
+    <div  (mousedown)="mouseDown = true" (mouseup)="mouseDown = false" style="display: flex;">
+        <canvas #myCanvas height="500" width="500" class="canvas"> </canvas>
+        <canvas #myCanvas2 height="500" width="500" class="canvas" style="opacity: .5;"> </canvas>
+        <div>
+            <button (click)="onBlackClick()" class="color-btn-black"></button>
+            <button (click)="onWhiteClick()" class="color-btn-white"></button>
+        </div>
+    </div>
+    <div style="flex-grow: 1;"></div>
+</div>
+
+
