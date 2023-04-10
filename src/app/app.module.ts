@@ -10,6 +10,7 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatIconModule} from '@angular/material/icon';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaskComponent } from './components/mask/mask.component';
+import { CropComponent } from './components/crop/crop/crop.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { MaskComponent } from './components/mask/mask.component';
     NavbarComponent,
     FooterComponent,
     MainFrameComponent,
-    MaskComponent
+    MaskComponent,
+    CropComponent
   ],
   imports: [
     BrowserModule,
