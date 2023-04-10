@@ -1,7 +1,7 @@
 
 # PaintedPottery
 
-This project aims to provide a frontend for the researched [pipeline](http://diglib.eg.org/handle/10.2312/gch20211417) of Peter Houska to transform images of Painted Pottery to an unstretched unrolling of the painted content.
+This project aims to provide a frontend for the researched [pipeline](http://diglib.eg.org/handle/10.2312/gch20211417) of Peter Houska Et al. to transform images of Painted Pottery to an unstretched unrolling of the painted content.
 
 ## Table of Contents
 
