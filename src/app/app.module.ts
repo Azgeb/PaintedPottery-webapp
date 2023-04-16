@@ -11,6 +11,7 @@ import {MatIconModule} from '@angular/material/icon';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaskComponent } from './components/mask/mask.component';
 import { CropComponent } from './components/crop/crop/crop.component';
+import { PipelineCarouselComponent } from './components/pipeline-carousel/pipeline-carousel.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { CropComponent } from './components/crop/crop/crop.component';
     FooterComponent,
     MainFrameComponent,
     MaskComponent,
-    CropComponent
+    CropComponent,
+    PipelineCarouselComponent
   ],
   imports: [
     BrowserModule,
