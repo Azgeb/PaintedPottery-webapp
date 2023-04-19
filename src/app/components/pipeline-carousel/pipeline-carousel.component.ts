@@ -11,6 +11,6 @@ export class PipelineCarouselComponent {
   public changeIndex(add:number):void{
     this.componentIndex = this.componentIndex + add;
     if(this.componentIndex < 0) this.componentIndex = 0;
-    if(this.componentIndex > 1) this.componentIndex = 1;
+    if(this.componentIndex > 2) this.componentIndex = 1;
   }
 }

@@ -1,4 +1,5 @@
 import { AfterViewInit, Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
+import { ImageService } from 'src/app/services/image.service';
 
 @Component({
   selector: 'app-mask',
@@ -17,14 +18,14 @@ export class MaskComponent implements AfterViewInit {
   mouseDown:boolean = false;
   isBlack:boolean = false
 
-  constructor() { }
+  constructor(public imageService: ImageService) { }
 
   ngAfterViewInit(): void {
 
     this.context = this.myCanvas.nativeElement.getContext('2d');
     this.context2 = this.myCanvas2.nativeElement.getContext('2d');
     this.contextOrig = this.orig.nativeElement.getContext('2d');
-    this.origImage.src = "./assets/img/pottery.jpg";
+    this.origImage.src = String(this.imageService.images.value[0]);
     this.origImage.width = 500;
     this.origImage.height = 500;
     this.origImage.crossOrigin = "Anonymous";

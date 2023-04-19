@@ -1,12 +1,13 @@
-<div style="display: flex; flex-direction:row; height: auto;">
+<div style="display: flex; flex-direction:row; height: 100%;">
     <div style="width: 3vw;display: flex; flex-direction:column">
         <div style="flex-grow: 1;"></div>
         <a (click)="changeIndex(-1)" class="direction-indicator">&lt;</a>
         <div style="flex-grow: 1;"></div>
     </div>
     <div [ngSwitch]="componentIndex" style="width: 94vw;">
-        <app-mask *ngSwitchCase="0"></app-mask>
-        <app-crop *ngSwitchCase="1"></app-crop>
+        <app-upload *ngSwitchCase="0"></app-upload>
+        <app-mask *ngSwitchCase="1"></app-mask>
+        <app-crop *ngSwitchCase="2"></app-crop>
     </div>
     
     <div style="width: 3vw;display: flex; flex-direction:column">
