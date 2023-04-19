@@ -1,0 +1,18 @@
+<div style="display: flex; flex-direction: column; height: 100%;">
+    <div style="flex-grow: 1;"></div>
+    <div style="display: flex; flex-direction: row;">
+        <div style="flex-grow: 1;"></div>
+        <div style="width: 25vw; height: 25vh; background-color: aqua; border-radius: 15px;">
+            <div class="text-center">
+                <input class="form-control" type="file" 
+                        (change)="onChange($event)">
+              
+                <button (click)="onUpload()" 
+                    class="btn btn-success">
+                    Upload
+                </button>
+            </div></div>
+        <div style="flex-grow: 1;"></div>
+    </div>
+    <div style="flex-grow: 1;"></div>
+</div>
