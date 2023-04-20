@@ -2,16 +2,9 @@
     <div style="flex-grow: 1;"></div>
     <div style="display: flex; flex-direction: row;">
         <div style="flex-grow: 1;"></div>
-        <div style="width: 25vw; height: 25vh; background-color: aqua; border-radius: 15px;">
-            <div class="text-center">
-                <input class="form-control" type="file" 
-                        (change)="onChange($event)">
-              
-                <button (click)="onUpload()" 
-                    class="btn btn-success">
-                    Upload
-                </button>
-            </div></div>
+        <div style="width: 25vw; height: 25vh; background-color: #00ffff8e; box-shadow: 0 0 1rem #000000b0; border-radius: 2rem;">
+            <input id="file-upload" class="form-control" type="file" (change)="onChange($event)">
+        </div>
         <div style="flex-grow: 1;"></div>
     </div>
     <div style="flex-grow: 1;"></div>
