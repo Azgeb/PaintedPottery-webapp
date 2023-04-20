@@ -39,22 +39,30 @@ export class CropComponent {
       }, false);
     }
 
-    this.bottomY = this.image.height;
+    this.bottomY = this.image.height-1;
+    this.topY = 1;
   }
 
   getMousePos(evt: any) {
+    var rect = this.myCanvas2.nativeElement.getBoundingClientRect();
+    
+    this.context2.font = "1rem bold";
     this.context2.clearRect(0,0,this.myCanvas2.nativeElement.width, this.myCanvas2.nativeElement.height);
 
     if(this.isBottom){
-      this.bottomY = evt.clientY;
+      this.bottomY = evt.clientY - rect.top;
     } else {
-      this.topY = evt.clientY;
+      this.topY = evt.clientY - rect.top;
     }
 
     this.context2.fillStyle="green";
     this.context2.fillRect(0, this.topY, this.image.width,1);
     this.context2.fillStyle="orange";
     this.context2.fillRect(0, this.bottomY, this.image.width,1);
+    
+    this.context2.fillStyle="black";
+    this.context2.fillText("Top", this.image.width/2, this.topY)
+    this.context2.fillText("Bottom", this.image.width/2,  this.bottomY)
 
   }
 
