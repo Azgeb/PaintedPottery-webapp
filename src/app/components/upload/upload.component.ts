@@ -11,7 +11,7 @@ export class UploadComponent{
   selectedFile:any; 
 
   constructor(public imageService: ImageService){}
-  // On file Select
+  
   onChange(event: any) {
     this.imageService.images.next([]);
     for (let index = 0; index < event.target.files.length; index++) {
@@ -20,9 +20,6 @@ export class UploadComponent{
         this.imageService.addImage(event.target!.result)
       };
       reader.readAsDataURL(event.target.files[index]);
-      
     }
-
-   
   }
 }
