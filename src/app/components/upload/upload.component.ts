@@ -13,17 +13,16 @@ export class UploadComponent{
   constructor(public imageService: ImageService){}
   // On file Select
   onChange(event: any) {
-    const reader = new FileReader(); 
-    reader.readAsDataURL(event.target.files[0]); // read file as data url
+    this.imageService.images.next([]);
+    for (let index = 0; index < event.target.files.length; index++) {
+      const reader = new FileReader(); 
+      reader.onload = (event) => {
+        this.imageService.addImage(event.target!.result)
+      };
+      reader.readAsDataURL(event.target.files[index]);
+      
+    }
 
-    reader.onload = (event) => {
-      let images: (string | ArrayBuffer | null)[] = [];
-      images.push(event.target!.result);
-      this.imageService.images.next(images);
-    };
-  }
-
-  // OnClick of button Upload
-  onUpload() {
+   
   }
 }

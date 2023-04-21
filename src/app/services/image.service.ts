@@ -9,4 +9,8 @@ export class ImageService {
   images = new BehaviorSubject<(string | ArrayBuffer | null)[]>([]);
 
   constructor() { }
+
+  public addImage(image: (string | ArrayBuffer | null)):void{
+    this.images.value.push(image);
+  }
 }
