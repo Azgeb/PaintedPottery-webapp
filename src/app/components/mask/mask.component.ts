@@ -97,7 +97,7 @@ export class MaskComponent implements AfterViewInit {
       this.image_.onload = () => {
         this.contextOrig.drawImage(this.image_, 0, 0, 500,500);
       }
-      
+      this.contextOrig.drawImage(this.image_, 0, 0, 500,500);
     }
   }
 

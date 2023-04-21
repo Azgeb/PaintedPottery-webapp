@@ -9,6 +9,7 @@ import { ImageService } from 'src/app/services/image.service';
 export class MaskWrapperComponent {
 
   images: HTMLImageElement[] = [];
+  imageIndex:number = 0;
 
   constructor(public imageService: ImageService){
     this.loadImages();
@@ -28,6 +29,16 @@ export class MaskWrapperComponent {
 
     )
    
+  }
+
+  public addIndex():void{
+    this.imageIndex = this.imageIndex + 1;
+    if(this.imageIndex >= this.images.length) this.imageIndex = this.images.length -1;
+  }
+
+  public subtractIndex():void{
+    this.imageIndex = this.imageIndex -1;
+    if(this.imageIndex < 0) this.imageIndex = 0;
   }
 
 }

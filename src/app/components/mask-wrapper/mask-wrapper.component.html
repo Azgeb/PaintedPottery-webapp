@@ -1,7 +1,11 @@
-<div style="display: flex; flex-direction: column;">
-    <div style="flex-grow: 1;"></div>
-    <div *ngFor="let image of images">
-        <app-mask [image]="image"></app-mask>
+<div style="display: flex; flex-direction: column;height: 100%;">
+    <div style="margin: 1rem">
+        <a (click)="subtractIndex()" class="direction-indicator-up">{{imageIndex == 0 ? "" : ">" }}</a>
     </div>
-    <div style="flex-grow: 1;"></div>
+    <div  style="flex-grow: 1;" [ngSwitch]="imageIndex" *ngFor="let image of images; let i = index">
+        <app-mask *ngSwitchCase="i" [image]="image"></app-mask>
+    </div>
+    <div style="margin: 1rem">
+        <a (click)="addIndex()" class="direction-indicator-down">{{imageIndex >= images.length -1 ? "" : ">" }}</a>
+    </div>
 </div>
