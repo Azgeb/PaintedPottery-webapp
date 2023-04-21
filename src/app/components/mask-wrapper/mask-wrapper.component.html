@@ -1,0 +1,7 @@
+<div style="display: flex; flex-direction: column;">
+    <div style="flex-grow: 1;"></div>
+    <div *ngFor="let image of images">
+        <app-mask [image]="image"></app-mask>
+    </div>
+    <div style="flex-grow: 1;"></div>
+</div>

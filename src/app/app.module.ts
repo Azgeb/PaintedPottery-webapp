@@ -13,6 +13,7 @@ import { MaskComponent } from './components/mask/mask.component';
 import { CropComponent } from './components/crop/crop/crop.component';
 import { PipelineCarouselComponent } from './components/pipeline-carousel/pipeline-carousel.component';
 import { UploadComponent } from './components/upload/upload.component';
+import { MaskWrapperComponent } from './components/mask-wrapper/mask-wrapper.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { UploadComponent } from './components/upload/upload.component';
     MaskComponent,
     CropComponent,
     PipelineCarouselComponent,
-    UploadComponent
+    UploadComponent,
+    MaskWrapperComponent
   ],
   imports: [
     BrowserModule,

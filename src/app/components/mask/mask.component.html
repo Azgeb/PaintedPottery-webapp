@@ -1,16 +1,12 @@
-<div style="display: flex; flex-direction: row;">
-    <div style="flex-grow: 1;"></div>
-    <div  (mousedown)="mouseDown = true" (mouseup)="mouseDown = false" style="display: flex;">
-        <div class="outsideWrapper">
-            <div class="insideWrapper">
-                <canvas #orig height="500" width="500" class="coveredImage"> </canvas>
-                <canvas #myCanvas height="500" width="500" class="coveredImage"> </canvas>
-            </div>
-        </div>
-        <canvas #myCanvas2 height="500" width="500" class="canvas" style="opacity: .5;"> </canvas>
-        <div>
-            <button (click)="toggleIsBlackClick()"  [ngClass]="isBlack ? 'color-btn-black' : 'color-btn-white'"></button>
+<div (mousedown)="mouseDown = true" (mouseup)="mouseDown = false" style="display: flex;">
+    <div class="outsideWrapper">
+        <div class="insideWrapper">
+            <canvas #orig height="500" width="500" class="coveredImage"> </canvas>
+            <canvas #myCanvas height="500" width="500" class="coveredImage"> </canvas>
         </div>
     </div>
-    <div style="flex-grow: 1;"></div>
+    <canvas #myCanvas2 height="500" width="500" class="canvas" style="opacity: .5;"> </canvas>
+    <div>
+        <button (click)="toggleIsBlackClick()" [ngClass]="isBlack ? 'color-btn-black' : 'color-btn-white'"></button>
+    </div>
 </div>

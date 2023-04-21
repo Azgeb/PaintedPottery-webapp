@@ -7,11 +7,18 @@ import { ImageService } from 'src/app/services/image.service';
   styleUrls: ['./mask.component.scss']
 })
 export class MaskComponent implements AfterViewInit {
+
+  image_: HTMLImageElement = new Image();
+
+  @Input() set image(value: HTMLImageElement){
+    this.image_ = value;
+
+  }
+
   @ViewChild('myCanvas') private myCanvas: ElementRef = {} as ElementRef
   @ViewChild('myCanvas2') private myCanvas2: ElementRef = {} as ElementRef
   @ViewChild('orig') private orig: ElementRef = {} as ElementRef
-  image = new Image();
-  origImage = new Image();
+  mask = new Image();
   context!: CanvasRenderingContext2D;
   context2!: CanvasRenderingContext2D;
   contextOrig!: CanvasRenderingContext2D;
@@ -25,22 +32,17 @@ export class MaskComponent implements AfterViewInit {
     this.context = this.myCanvas.nativeElement.getContext('2d');
     this.context2 = this.myCanvas2.nativeElement.getContext('2d');
     this.contextOrig = this.orig.nativeElement.getContext('2d');
-    this.origImage.src = String(this.imageService.images.value[0]);
-    this.origImage.width = 500;
-    this.origImage.height = 500;
-    this.origImage.crossOrigin = "Anonymous";
-    this.origImage.onload = () => {
-      this.contextOrig.drawImage(this.origImage, 0, 0, 500,500);
-    }
+ 
+    this.imageChange();
 
-    this.image.src = "./assets/img/mask.png";
-    this.image.width = 500;
-    this.image.height = 500;
-    this.image.crossOrigin = "Anonymous";
-    this.image.onload = () => {
-      console.log("image has loaded!");
-      this.context.drawImage(this.image, 0, 0, 500,500);
-      this.context2.drawImage(this.image, 0, 0, 500,500);
+    this.mask.src = "./assets/img/mask.png";
+    this.mask.width = 500;
+    this.mask.height = 500;
+    this.mask.crossOrigin = "Anonymous";
+    this.mask.onload = () => {
+      console.log("mask has loaded!");
+      this.context.drawImage(this.mask, 0, 0, 500,500);
+      this.context2.drawImage(this.mask, 0, 0, 500,500);
      
       this.myCanvas.nativeElement.addEventListener("mousemove",  (evt: any) => {
         if(this.mouseDown){
@@ -88,6 +90,15 @@ export class MaskComponent implements AfterViewInit {
 
   public toggleIsBlackClick(): void{
     this.isBlack = !this.isBlack;
+  }
+
+  imageChange(){
+    if(this.image_){
+      this.image_.onload = () => {
+        this.contextOrig.drawImage(this.image_, 0, 0, 500,500);
+      }
+      
+    }
   }
 
 }
