@@ -46,7 +46,6 @@ export class CropComponent {
   getMousePos(evt: any) {
     var rect = this.myCanvas2.nativeElement.getBoundingClientRect();
     
-    this.context2.font = "1rem bold";
     this.context2.clearRect(0,0,this.myCanvas2.nativeElement.width, this.myCanvas2.nativeElement.height);
 
     if(this.isBottom){
@@ -60,6 +59,11 @@ export class CropComponent {
     this.context2.fillStyle="orange";
     this.context2.fillRect(0, this.bottomY, this.image.width,1);
     
+    this.context2.font = ".8rem Sans-serif";
+    this.context2.strokeStyle = 'white';
+    this.context2.lineWidth = 3
+    this.context2.strokeText("Top", this.image.width/2, this.topY)
+    this.context2.strokeText("Bottom", this.image.width/2,  this.bottomY)
     this.context2.fillStyle="black";
     this.context2.fillText("Top", this.image.width/2, this.topY)
     this.context2.fillText("Bottom", this.image.width/2,  this.bottomY)

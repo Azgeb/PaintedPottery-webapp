@@ -1,20 +1,24 @@
-<div style="display: flex; flex-direction: row;">
+<div style="display: flex; flex-direction: column; height: 100%;">
     <div style="flex-grow: 1;"></div>
-    <div (mousedown)="mouseDown = true" (mouseup)="mouseDown = false" style="display: flex;margin:20px 60px;">
-        <!--<div id="container">
+    <div style="display: flex; flex-direction: row;">
+        <div style="flex-grow: 1;"></div>
+        <div (mousedown)="mouseDown = true" (mouseup)="mouseDown = false" style="display: flex;margin:20px 60px;">
+            <!--<div id="container">
             <canvas #myCanvas height="500" width="500"></canvas>
             <canvas #myCanvas2 height="500" width="500"></canvas>
         </div>-->
-        <div class="outsideWrapper">
-            <div class="insideWrapper">
-                <canvas #myCanvas height="500" width="500" class="coveredImage"></canvas>
-                <canvas #myCanvas2 height="500" width="500" class="coveringCanvas"></canvas>
+            <div class="outsideWrapper">
+                <div class="insideWrapper">
+                    <canvas #myCanvas height="500" width="500" class="coveredImage"></canvas>
+                    <canvas #myCanvas2 height="500" width="500" class="coveringCanvas"></canvas>
+                </div>
+            </div>
+            <div>
+                <p>Working On {{getTopBottom()}}</p>
+                <button (click)="toggleTopBottom()" class="color-btn-black">Toggle</button>
             </div>
         </div>
-        <div>
-            <p>Working On {{getTopBottom()}}</p>
-            <button (click)="toggleTopBottom()" class="color-btn-black">Toggle</button>
-        </div>
+        <div style="flex-grow: 1;"></div>
     </div>
     <div style="flex-grow: 1;"></div>
 </div>
