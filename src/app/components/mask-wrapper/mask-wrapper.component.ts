@@ -31,14 +31,11 @@ export class MaskWrapperComponent {
    
   }
 
-  public addIndex():void{
-    this.imageIndex = this.imageIndex + 1;
+  public addIndex(add:number):void{
+    this.imageIndex = this.imageIndex + add;
     if(this.imageIndex >= this.images.length) this.imageIndex = this.images.length -1;
-  }
-
-  public subtractIndex():void{
-    this.imageIndex = this.imageIndex -1;
     if(this.imageIndex < 0) this.imageIndex = 0;
   }
+
 
 }

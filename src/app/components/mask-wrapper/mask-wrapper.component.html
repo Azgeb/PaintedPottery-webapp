@@ -1,11 +1,22 @@
 <div style="display: flex; flex-direction: column;height: 100%;">
     <div style="margin: 1rem">
-        <a (click)="subtractIndex()" class="direction-indicator-up">{{imageIndex == 0 ? "" : ">" }}</a>
+        <div (click)="addIndex(-1)" class="direction-indicator">
+            <p class="up" style="transform: rotate(-90deg);">{{imageIndex <= 0 ? "" : ">" }} </p>
+        </div>
     </div>
-    <div  style="flex-grow: 1;" [ngSwitch]="imageIndex" *ngFor="let image of images; let i = index">
-        <app-mask *ngSwitchCase="i" [image]="image"></app-mask>
+
+    <div [ngSwitch]="imageIndex" style="flex-grow: 1; display: flex; flex-direction: column;">
+        <div style="flex-grow: 1;"></div>
+        <div *ngFor="let image of images; index as i">
+            <app-mask *ngSwitchCase="i" [image]="images[i]"></app-mask>
+        </div>
+
+        <div style="flex-grow: 1;"></div>
     </div>
+
     <div style="margin: 1rem">
-        <a (click)="addIndex()" class="direction-indicator-down">{{imageIndex >= images.length -1 ? "" : ">" }}</a>
+        <div (click)="addIndex(1)" class="direction-indicator">
+            <p  class="down" style="transform: rotate(90deg);">{{imageIndex >= images.length -1 ? "" : ">" }}</p>
+        </div>
     </div>
 </div>
