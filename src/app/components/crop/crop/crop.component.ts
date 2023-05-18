@@ -30,8 +30,8 @@ export class CropComponent {
     this.image.crossOrigin = "Anonymous";
     this.image.onload = () => {
       console.log("image has loaded!");
-      this.context.drawImage(this.image, 0, 0, 500,500);
-      this.context2.drawImage(this.image, 0, 0, 500,500);
+      this.grayscale()
+      this.context2.drawImage(new Image(), 0, 0, 500,500);
       this.myCanvas2.nativeElement.addEventListener("mousemove",  (evt: any) => {
         if(this.mouseDown){
           this.getMousePos(evt);
@@ -53,7 +53,11 @@ export class CropComponent {
     } else {
       this.topY = evt.clientY - rect.top;
     }
+    this.drawLines();
 
+  }
+
+  drawLines(){
     this.context2.fillStyle="green";
     this.context2.fillRect(0, this.topY, this.image.width,1);
     this.context2.fillStyle="orange";
@@ -79,5 +83,69 @@ export class CropComponent {
       return "Bottom";
     }
     return "Tops";
+  }
+
+
+  grayscale():void{
+    this.context.drawImage(this.image, 0, 0, 500,500);
+    let imgDataOrig = this.context.getImageData(0, 0, 500,500);
+    let imgDataWork = this.context.getImageData(0, 0, 500,500);
+    let pixels = imgDataWork.data;
+
+    for (var i = 0; i < pixels.length; i += 4) {
+  
+      let lightness = pixels[i] * 0.2989 + pixels[i + 1] * 0.5870 + pixels[i + 2] * 0.1140;
+
+      if(lightness > (255/2)){
+        lightness = 255;
+      } else {
+        lightness = 0;
+      }
+  
+      pixels[i] = lightness;
+      pixels[i + 1] = lightness;
+      pixels[i + 2] = lightness;
+    }
+    this.context.putImageData(imgDataWork, 0, 0);
+    this.calculateTopAndBottom();
+    this.context.putImageData(imgDataOrig, 0, 0);
+  }
+
+  calculateTopAndBottom():void{
+    const thresshold = 20;
+
+    for (let i = 0; i < this.context.canvas.height; i++) {
+      let colorChangeCount = 0;
+      let lastColor = 0;
+      for (let j = 0; j < this.context.canvas.width; j++) {
+        const color = this.context.getImageData(j, i, 1, 1).data[0];
+        if (color != lastColor) {
+          lastColor = color;
+          colorChangeCount ++;
+        }
+      }
+      if(colorChangeCount > thresshold){
+        this.topY = i;
+        break;
+      }
+    }
+
+    for (let i = this.context.canvas.height; i >= 0; i--) {
+      let colorChangeCount = 0;
+      let lastColor = 0;
+      for (let j = 0; j < this.context.canvas.width; j++) {
+        const color = this.context.getImageData(j, i, 1, 1).data[0];
+        if (color != lastColor) {
+          lastColor = color;
+          colorChangeCount ++;
+        }
+      }
+      if(colorChangeCount > thresshold){
+        this.bottomY = i;
+        break;
+      }
+    }
+    
+    this.drawLines();
   }
 }
