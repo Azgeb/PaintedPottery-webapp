@@ -1,12 +1,30 @@
-<div (mousedown)="mouseDown = true" (mouseup)="mouseDown = false" style="display: flex;justify-content: center;">
+<div style="display: flex;justify-content: center;">
     <div class="outsideWrapper">
         <div class="insideWrapper">
             <canvas #orig height="500" width="500" class="coveredImage"> </canvas>
             <canvas #myCanvas height="500" width="500" class="coveredImage" style="opacity: .5;"> </canvas>
+            <canvas #indicatorLeft height="500" width="500" class="coveredImage" style="opacity: .5;"> </canvas>
+            <canvas #inputLeft height="500" width="500" class="coveredImage" style="opacity: .0;"> </canvas>
         </div>
     </div>
-    <canvas #myCanvas2 height="500" width="500" class="canvas" > </canvas>
-    <div>
-        <button (click)="toggleIsBlackClick()" [ngClass]="isBlack ? 'color-btn-black' : 'color-btn-white'"></button>
+    <div class="outsideWrapper">
+        <div class="insideWrapper">
+            <canvas #myCanvas2 height="500" width="500" class="canvas"> </canvas>
+            <canvas #indicatorRight height="500" width="500" class="coveredImage" style="opacity: .5;"> </canvas>
+            <canvas #inputRight height="500" width="500" class="coveredImage" style="opacity: .0;"> </canvas>
+        </div>
+    </div>
+    <div style="display: flex; flex-direction: column;">
+        <div style="display: inline-flex">
+            <span style="font-size: 80px;" class="material-symbols-outlined">brush</span>
+            <button *ngFor="let size of sizes" (click)="setActive(size, 0)" class="rectangle"
+                [style.background-color]="'white'" [style.width.px]="size" [style.height.px]="size"></button>
+        </div>
+        <div style="margin-top:1rem"></div>
+        <div style="display: inline-flex">
+            <span style="font-size: 80px;" class="material-symbols-outlined">ink_eraser</span>
+            <button *ngFor="let size of sizes" (click)="setActive(size, 1)" class="rectangle"
+                [style.background-color]="'black'" [style.width.px]="size" [style.height.px]="size"></button>
+        </div>
     </div>
 </div>
