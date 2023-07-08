@@ -6,6 +6,7 @@ import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
 })
 export class ImageService {
 
+  //images = new BehaviorSubject<(string | ArrayBuffer | null)[]>(["./assets/img/mask.png", "./assets/img/pottery.jpg","./assets/img/mask.png", "./assets/img/pottery.jpg"]);
   images = new BehaviorSubject<(string | ArrayBuffer | null)[]>([]);
 
   constructor() { }
