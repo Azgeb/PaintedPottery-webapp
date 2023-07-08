@@ -45,19 +45,25 @@ export class CropComponent {
 
   getMousePos(evt: any) {
     var rect = this.myCanvas2.nativeElement.getBoundingClientRect();
-    
-    this.context2.clearRect(0,0,this.myCanvas2.nativeElement.width, this.myCanvas2.nativeElement.height);
+  
+    const epsilon = 10;
+    const ypos = evt.clientY - rect.top
 
-    if(this.isBottom){
-      this.bottomY = evt.clientY - rect.top;
-    } else {
+    if(ypos < this.topY + epsilon && ypos > this.topY - epsilon){
       this.topY = evt.clientY - rect.top;
-    }
+    } else  if(ypos < this.bottomY + epsilon && ypos > this.bottomY - epsilon){
+      this.bottomY = evt.clientY - rect.top;
+    } 
+
+  
     this.drawLines();
 
   }
 
+
   drawLines(){
+    this.context2.clearRect(0,0,this.myCanvas2.nativeElement.width, this.myCanvas2.nativeElement.height);
+
     this.context2.fillStyle="green";
     this.context2.fillRect(0, this.topY, this.image.width,1);
     this.context2.fillStyle="orange";
@@ -83,6 +89,10 @@ export class CropComponent {
       return "Bottom";
     }
     return "Tops";
+  }
+
+  calculateBounding(){
+    this.grayscale();
   }
 
 
