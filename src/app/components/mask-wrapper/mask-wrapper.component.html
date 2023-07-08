@@ -8,7 +8,7 @@
     <div [ngSwitch]="imageIndex" style="flex-grow: 1; display: flex; flex-direction: column;">
         <div style="flex-grow: 1;"></div>
         <div *ngFor="let image of images; index as i">
-            <app-mask *ngSwitchCase="i" [image]="images[i]"></app-mask>
+            <app-mask *ngSwitchCase="i" [image]="images[i]" [index]="i"></app-mask>
         </div>
 
         <div style="flex-grow: 1;"></div>

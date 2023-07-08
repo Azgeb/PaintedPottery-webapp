@@ -15,6 +15,8 @@ export class MaskComponent implements AfterViewInit {
 
   }
 
+  @Input() index:number = 0;
+
   @ViewChild('myCanvas') private myCanvas: ElementRef = {} as ElementRef
   @ViewChild('myCanvas2') private myCanvas2: ElementRef = {} as ElementRef
   @ViewChild('orig') private orig: ElementRef = {} as ElementRef
@@ -35,7 +37,7 @@ export class MaskComponent implements AfterViewInit {
 
     this.imageChange();
 
-    this.mask.src = "./assets/img/mask.png";
+    this.mask.src = "./assets/img/" + String(this.index) + "_mask.png";
     this.mask.width = 500;
     this.mask.height = 500;
     this.mask.crossOrigin = "Anonymous";
@@ -78,21 +80,22 @@ export class MaskComponent implements AfterViewInit {
 
   private draw() {
 
-    let imgData: ImageData = this.context.createImageData(1, 1);
-    imgData.data[0] = 255;
-    imgData.data[1] = 0;
-    imgData.data[2] = 0;
-    imgData.data[3] = 0;
+    let imgData = this.context.getImageData(0, 0, 500,500);
+    let pixels = imgData.data;
 
-    console.log(this.context.getImageData(100, 100, 1, 1))
-    for (let i = 0; i < this.myCanvas.nativeElement.height; i++) {
-      for (let j = 0; j < this.myCanvas.nativeElement.width; j++) {
-        if (this.context.getImageData(i, j, 1, 1).data[0] == 255) {
-          this.context.putImageData(imgData, i, j);
-        }
+    for (var i = 0; i < pixels.length; i += 4) {
+  
+      const black = 255;
+      
+      if (pixels[i] == 255 ) {
+        pixels[i] = 0;
+        pixels[i + 1] = 0;
+        pixels[i + 2] = 0;
+        pixels[i + 3] = 0;
+      } else {
       }
-
     }
+    this.context.putImageData(imgData, 0, 0);
   }
 
   public toggleIsBlackClick(): void {
