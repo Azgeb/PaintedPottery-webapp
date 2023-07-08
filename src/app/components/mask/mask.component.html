@@ -16,13 +16,13 @@
     </div>
     <div style="display: flex; flex-direction: column;">
         <div style="display: inline-flex">
-            <span style="font-size: 80px;" class="material-symbols-outlined">brush</span>
+            <span style="font-size: 80px;" class="material-symbols-outlined" [style.color]="active.type ? 'black' : 'green'">brush</span>
             <button *ngFor="let size of sizes" (click)="setActive(size, 0)" class="rectangle"
                 [style.background-color]="'white'" [style.width.px]="size" [style.height.px]="size"></button>
         </div>
         <div style="margin-top:1rem"></div>
         <div style="display: inline-flex">
-            <span style="font-size: 80px;" class="material-symbols-outlined">ink_eraser</span>
+            <span style="font-size: 80px;" class="material-symbols-outlined" [style.color]="active.type ? 'green' : 'black'">ink_eraser</span>
             <button *ngFor="let size of sizes" (click)="setActive(size, 1)" class="rectangle"
                 [style.background-color]="'black'" [style.width.px]="size" [style.height.px]="size"></button>
         </div>
