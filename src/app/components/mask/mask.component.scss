@@ -1,9 +1,11 @@
 .rectangle{
   display:block;
-  outline: black solid .1rem;
+  outline: black solid .1px !important;
+  border-width: 0 !important;
   opacity: .75;
   margin-left: .5rem;
   margin-right: .5rem;
+  padding: 0!important;
 }
 
 .canvas{

@@ -15,7 +15,7 @@ export class MaskComponent implements AfterViewInit {
     this.image_ = value;
   }
 
-  sizes = [80,60,40,20]; 
+  sizes = [80,60,40,20,5]; 
 
   active = {
     size: 40,
