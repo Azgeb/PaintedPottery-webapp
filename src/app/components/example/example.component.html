@@ -1,0 +1,23 @@
+<div style="display: flex; flex-direction:column; height: 100%;">
+    <div style="display: flex; flex-direction:row; margin: 2rem;">
+        <div style="flex-grow: 1;"></div>
+        <p style="padding-right: 1rem; font-weight: bold;">Upload</p>
+        <input id="file-upload" class="form-control" type="file" (change)="onUpload($event)" single>
+        <div>
+            <label for="cars">Choose an operation:</label>
+            <select [(ngModel)]="operationNumber" style="height: fit-content;">
+                <option [value]="0">Invert</option>
+                <option [value]="1">Flip</option>
+                <option [value]="2">Grayscale</option>
+            </select>
+            <button (click)="getImage()" style="height: fit-content;">GET Image</button>
+        </div>
+        <div style="flex-grow: 1;"></div>
+    </div>
+
+    <div style="display: flex; flex-direction:row">
+        <div style="flex-grow: 1;"></div>
+        <img *ngIf="img" id="myimage" [src]='img' />
+        <div style="flex-grow: 1;"></div>
+    </div>
+</div>
