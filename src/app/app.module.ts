@@ -14,6 +14,9 @@ import { CropComponent } from './components/crop/crop/crop.component';
 import { PipelineCarouselComponent } from './components/pipeline-carousel/pipeline-carousel.component';
 import { UploadComponent } from './components/upload/upload.component';
 import { MaskWrapperComponent } from './components/mask-wrapper/mask-wrapper.component';
+import { ExampleComponent } from './components/example/example.component';
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -25,14 +28,17 @@ import { MaskWrapperComponent } from './components/mask-wrapper/mask-wrapper.com
     CropComponent,
     PipelineCarouselComponent,
     UploadComponent,
-    MaskWrapperComponent
+    MaskWrapperComponent,
+    ExampleComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     MatToolbarModule,
-    MatIconModule
+    MatIconModule,
+    HttpClientModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
