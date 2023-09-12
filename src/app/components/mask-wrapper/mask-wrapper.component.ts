@@ -9,32 +9,30 @@ import { ImageService } from 'src/app/services/image.service';
 export class MaskWrapperComponent {
 
   images: HTMLImageElement[] = [];
-  imageIndex:number = 0;
+  imageIndex: number = 0;
 
-  constructor(public imageService: ImageService){
+  constructor(public imageService: ImageService) {
     this.loadImages();
   }
 
-  loadImages():void{
-    
-    this.imageService.images.value.forEach( image => {
+  loadImages(): void {
+
+    this.imageService.images.value.forEach(image => {
       let hlpImage: HTMLImageElement = new Image();
       hlpImage.src = String(image);
-      hlpImage.width = 500;
-      hlpImage.height = 500;
       hlpImage.crossOrigin = "Anonymous";
 
       this.images.push(hlpImage);
     }
 
     )
-   
+
   }
 
-  public addIndex(add:number):void{
+  public addIndex(add: number): void {
     this.imageIndex = this.imageIndex + add;
-    if(this.imageIndex >= this.images.length) this.imageIndex = this.images.length -1;
-    if(this.imageIndex < 0) this.imageIndex = 0;
+    if (this.imageIndex >= this.images.length) this.imageIndex = this.images.length - 1;
+    if (this.imageIndex < 0) this.imageIndex = 0;
   }
 
 
