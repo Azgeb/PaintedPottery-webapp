@@ -1,4 +1,5 @@
 import { AfterViewInit, Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
+import { ConfigurationService } from 'src/app/services/configuration.service';
 import { ImageService } from 'src/app/services/image.service';
 import { StateService } from 'src/app/services/state.service';
 
@@ -10,12 +11,14 @@ import { StateService } from 'src/app/services/state.service';
 export class MaskComponent implements AfterViewInit {
 
   image_: HTMLImageElement = new Image();
+  MAX_IMAGE_HEIGHT = ConfigurationService.MAX_IMAGE_HEIGHT;
+  MAX_IMAGE_WIDTH = ConfigurationService.MAX_IMAGE_WIDTH;
 
   @Input() set image(value: HTMLImageElement) {
     this.image_ = value;
   }
 
-  sizes = [80,60,40,20,5]; 
+  sizes = [80, 60, 40, 20, 5];
 
   active = {
     size: 40,
@@ -48,17 +51,17 @@ export class MaskComponent implements AfterViewInit {
     this.contextIndicatorLeft = this.indicatorLeft.nativeElement.getContext('2d');
     this.contextIndicatorRight = this.indicatorRight.nativeElement.getContext('2d');
     this.contextOrig = this.orig.nativeElement.getContext('2d');
+    this.contextOrig.canvas.height = ConfigurationService.MAX_IMAGE_HEIGHT;
+    this.contextOrig.canvas.width = ConfigurationService.MAX_IMAGE_WIDTH;
 
     this.imageChange();
 
     this.mask.src = "./assets/img/" + String(this.index) + "_mask.png";
-    this.mask.width = 500;
-    this.mask.height = 500;
     this.mask.crossOrigin = "Anonymous";
     this.mask.onload = () => {
       console.log("mask has loaded!");
-      this.context.drawImage(this.mask, 0, 0, 500, 500);
-      this.context2.drawImage(this.mask, 0, 0, 500, 500);
+      this.context.drawImage(this.mask, 0, 0, this.mask.width, this.mask.height);
+      this.context2.drawImage(this.mask, 0, 0, this.mask.width, this.mask.height);
 
       this.inputLeft.nativeElement.addEventListener("mousemove", (evt: any) => {
         this.drawIndicator(evt, this.inputLeft);
@@ -83,14 +86,14 @@ export class MaskComponent implements AfterViewInit {
     if (this.active.type == 0) {
       this.context.fillStyle = "white";
       this.context2.fillStyle = "white";
-      this.context.clearRect(evt.clientX - rect.left - this.active.size/2, evt.clientY - rect.top - this.active.size/2, this.active.size, this.active.size)
-      this.context2.fillRect(evt.clientX - rect.left - this.active.size/2, evt.clientY - rect.top - this.active.size/2, this.active.size, this.active.size)
+      this.context.clearRect(evt.clientX - rect.left - this.active.size / 2, evt.clientY - rect.top - this.active.size / 2, this.active.size, this.active.size)
+      this.context2.fillRect(evt.clientX - rect.left - this.active.size / 2, evt.clientY - rect.top - this.active.size / 2, this.active.size, this.active.size)
 
     } else {
       this.context.fillStyle = "black";
       this.context2.fillStyle = "black";
-      this.context.fillRect(evt.clientX - rect.left - this.active.size/2, evt.clientY - rect.top - this.active.size/2, this.active.size, this.active.size)
-      this.context2.fillRect(evt.clientX - rect.left - this.active.size/2, evt.clientY - rect.top - this.active.size/2, this.active.size, this.active.size)
+      this.context.fillRect(evt.clientX - rect.left - this.active.size / 2, evt.clientY - rect.top - this.active.size / 2, this.active.size, this.active.size)
+      this.context2.fillRect(evt.clientX - rect.left - this.active.size / 2, evt.clientY - rect.top - this.active.size / 2, this.active.size, this.active.size)
     }
 
   }
@@ -101,17 +104,17 @@ export class MaskComponent implements AfterViewInit {
 
     this.contextIndicatorLeft.fillStyle = "red";
     this.contextIndicatorLeft.clearRect(0, 0, inputCanvas.nativeElement.width, inputCanvas.nativeElement.height);
-    this.contextIndicatorLeft.fillRect(evt.clientX - rect.left - this.active.size/2, evt.clientY - rect.top - this.active.size/2, this.active.size, this.active.size)
+    this.contextIndicatorLeft.fillRect(evt.clientX - rect.left - this.active.size / 2, evt.clientY - rect.top - this.active.size / 2, this.active.size, this.active.size)
 
     this.contextIndicatorRight.fillStyle = "red";
     this.contextIndicatorRight.clearRect(0, 0, inputCanvas.nativeElement.width, inputCanvas.nativeElement.height);
-    this.contextIndicatorRight.fillRect(evt.clientX - rect.left - this.active.size/2, evt.clientY - rect.top - this.active.size/2, this.active.size, this.active.size)
+    this.contextIndicatorRight.fillRect(evt.clientX - rect.left - this.active.size / 2, evt.clientY - rect.top - this.active.size / 2, this.active.size, this.active.size)
 
   }
 
   private draw() {
 
-    let imgData = this.context.getImageData(0, 0, 500, 500);
+    let imgData = this.context.getImageData(0, 0, ConfigurationService.MAX_IMAGE_WIDTH, ConfigurationService.MAX_IMAGE_HEIGHT);
     let pixels = imgData.data;
 
     for (var i = 0; i < pixels.length; i += 4) {
@@ -129,17 +132,17 @@ export class MaskComponent implements AfterViewInit {
     this.context.putImageData(imgData, 0, 0);
   }
 
-  public setActive(size:number, type:number): void {
-    this.active = {size: size, type: type}
-  }  
+  public setActive(size: number, type: number): void {
+    this.active = { size: size, type: type }
+  }
 
 
   imageChange() {
     if (this.image_) {
       this.image_.onload = () => {
-        this.contextOrig.drawImage(this.image_, 0, 0, 500, 500);
+        this.contextOrig.drawImage(this.image_, 0, 0, this.image_.width, this.image_.height);
       }
-      this.contextOrig.drawImage(this.image_, 0, 0, 500, 500);
+      this.contextOrig.drawImage(this.image_, 0, 0, this.image_.width, this.image_.height);
     }
   }
 
