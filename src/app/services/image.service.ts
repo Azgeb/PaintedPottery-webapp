@@ -11,7 +11,7 @@ export class ImageService {
 
   constructor() { }
 
-  public addImage(image: (string | ArrayBuffer | null)):void{
+  public addImage(image: (string | ArrayBuffer | null)): void {
     this.images.value.push(image);
   }
 }
