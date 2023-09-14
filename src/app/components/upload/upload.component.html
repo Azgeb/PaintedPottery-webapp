@@ -2,8 +2,18 @@
     <div style="flex-grow: 1;"></div>
     <div style="display: flex; flex-direction: row;">
         <div style="flex-grow: 1;"></div>
-        <div style="width: 25vw; height: 25vh; background-color: #00ffff8e; box-shadow: 0 0 1rem #000000b0; border-radius: 2rem;">
-            <input id="file-upload" class="form-control" type="file" (change)="onChange($event)" multiple>
+        <div style="min-width: 25vw; min-height: 25vh">
+            <form id="file-upload-form" class="uploader" >
+                <input id="file-upload" class="form-control" type="file" (change)="onChange($event)" multiple>
+                <label for="file-upload" id="file-drag">
+                    <div *ngFor="let fileName of fileNames">{{fileName}}</div>
+                    <div *ngIf="fileNames.length == 0" class="uploadInner">
+                        <i class="fa fa-download" aria-hidden="true"></i>
+                        <div>Select a file here</div>
+                    </div>
+                    <span id="file-upload-btn" class="btn btn-primary">Select a file</span>
+                </label>
+            </form>
         </div>
         <div style="flex-grow: 1;"></div>
     </div>

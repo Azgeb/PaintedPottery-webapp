@@ -15,6 +15,7 @@ export class UploadComponent {
   @ViewChild('myCanvas') private myCanvas: ElementRef = {} as ElementRef
   selectedFile: any;
   img: any;
+  fileNames: String[] = [];
 
   constructor(public imageService: ImageService, private sanitizer: DomSanitizer) { }
 
@@ -23,11 +24,11 @@ export class UploadComponent {
     for (let index = 0; index < event.target.files.length; index++) {
       const reader = new FileReader();
       reader.onload = async (event) => {
-
         this.img = this.sanitizer.bypassSecurityTrustUrl(event.target!.result as string);
-        this.imageService.addImage(await this.resizeImage(event.target!.result))
+        this.imageService.addImage(await this.resizeImage(event.target!.result));
       };
       reader.readAsDataURL(event.target.files[index]);
+      this.fileNames.push(event.target.files[index].name);
     }
   }
 

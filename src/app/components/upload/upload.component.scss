@@ -1,10 +1,37 @@
+@import '../../../styles.scss';
+
 input[type="file"] {
     width: inherit;
     height: inherit;
+    display: none;
 }
 
-img {
-    width: 500px;
-    height: 500px;
-    object-fit: contain;
+//*-----------------------------------------------*//
+
+.uploader {
+  label {
+    float: left;
+    clear: both;
+    width: 100%;
+    padding: 2rem 1.5rem;
+    text-align: center;
+    background: white;
+    border-radius: 7px;
+    border: 3px solid #eee;
+    transition: all .2s ease;
+    user-select: none;
+    box-shadow: 0 0 1rem #000000b0;
+
+    &:hover {
+      border-color: #000000a2;
+    }
   }
+
+  .uploadInner {
+    i.fa {
+      font-size: 3.5rem;
+      margin-bottom: 1rem;
+      transition: all .2s ease-in-out;
+    }
+  }
+}

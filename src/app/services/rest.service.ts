@@ -15,7 +15,7 @@ export class RestService {
 
   public getExampleImg(dto:ExampleRequestDTO): Observable<any>{
    
-    const url = 'http://localhost:3000/img';
+    const url = 'http://api.joseph-juri.info/img';
     const headers = { 'Content-Type': 'text/plain'}
     return this.httpClient.post(url, dto, {headers, responseType: 'text'});
   }
