@@ -17,10 +17,13 @@ export class UploadComponent {
   img: any;
   fileNames: String[] = [];
 
-  constructor(public imageService: ImageService, private sanitizer: DomSanitizer) { }
+  constructor(public imageService: ImageService, private sanitizer: DomSanitizer) {
+    this.imageService.images.next([]);
+   }
 
   onChange(event: any) {
     this.imageService.images.next([]);
+    this.fileNames = [];
     for (let index = 0; index < event.target.files.length; index++) {
       const reader = new FileReader();
       reader.onload = async (event) => {
