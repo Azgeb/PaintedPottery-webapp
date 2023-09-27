@@ -16,6 +16,8 @@ export class CropComponent {
   isBottom:boolean = false;
   topY:number = 0;
   bottomY:number= 0;
+  WIDTH:number = 1102;
+  HEIGHT:number = 517;
 
   constructor() { }
 
@@ -25,13 +27,13 @@ export class CropComponent {
     this.context2 = this.myCanvas2.nativeElement.getContext('2d');
 
     this.image.src = "./assets/img/stiched.png";
-    this.image.width = 500;
-    this.image.height = 500;
+    this.image.width = this.WIDTH;
+    this.image.height = this.HEIGHT;
     this.image.crossOrigin = "Anonymous";
     this.image.onload = () => {
       console.log("image has loaded!");
       this.grayscale()
-      this.context2.drawImage(new Image(), 0, 0, 500,500);
+      this.context2.drawImage(new Image(), 0, 0, this.WIDTH,this.HEIGHT);
       this.myCanvas2.nativeElement.addEventListener("mousemove",  (evt: any) => {
         if(this.mouseDown){
           this.getMousePos(evt);
@@ -65,11 +67,11 @@ export class CropComponent {
     this.context2.clearRect(0,0,this.myCanvas2.nativeElement.width, this.myCanvas2.nativeElement.height);
 
     this.context2.fillStyle="green";
-    this.context2.fillRect(0, this.topY, this.image.width,1);
+    this.context2.fillRect(0, this.topY, this.image.width,3);
     this.context2.fillStyle="orange";
-    this.context2.fillRect(0, this.bottomY, this.image.width,1);
+    this.context2.fillRect(0, this.bottomY, this.image.width,3);
     
-    this.context2.font = ".8rem Sans-serif";
+    this.context2.font = "1.25rem Sans-serif";
     this.context2.strokeStyle = 'white';
     this.context2.lineWidth = 3
     this.context2.strokeText("Top", this.image.width/2, this.topY)
@@ -97,9 +99,9 @@ export class CropComponent {
 
 
   grayscale():void{
-    this.context.drawImage(this.image, 0, 0, 500,500);
-    let imgDataOrig = this.context.getImageData(0, 0, 500,500);
-    let imgDataWork = this.context.getImageData(0, 0, 500,500);
+    this.context.drawImage(this.image, 0, 0, this.WIDTH,this.HEIGHT);
+    let imgDataOrig = this.context.getImageData(0, 0, this.WIDTH,this.HEIGHT);
+    let imgDataWork = this.context.getImageData(0, 0, this.WIDTH,this.HEIGHT);
     let pixels = imgDataWork.data;
 
     for (var i = 0; i < pixels.length; i += 4) {
