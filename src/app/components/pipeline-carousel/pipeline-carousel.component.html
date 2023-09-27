@@ -1,7 +1,7 @@
 <div style="display: flex; flex-direction:row; height: 100%;">
     <div style="width: 3vw;display: flex; flex-direction:column">
         <div style="flex-grow: 1;"></div>
-        <a (click)="changeIndex(-1)" class="direction-indicator">&lt;</a>
+        <a *ngIf="componentIndex > 0" (click)="changeIndex(-1)" class="direction-indicator">&lt;</a>
         <div style="flex-grow: 1;"></div>
     </div>
     <div [ngSwitch]="componentIndex" style="width: 94vw;">
@@ -12,7 +12,7 @@
     
     <div style="width: 3vw;display: flex; flex-direction:column">
         <div style="flex-grow: 1;"></div>
-        <a (click)="changeIndex(1)" class="direction-indicator">&gt;</a>
+        <a *ngIf="componentIndex < MAX_COMPONENT_INDEX" (click)="changeIndex(1)" class="direction-indicator">&gt;</a>
         <div style="flex-grow: 1;"></div>
     </div>
 

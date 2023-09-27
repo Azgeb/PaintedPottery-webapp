@@ -8,6 +8,7 @@ import { ImageService } from 'src/app/services/image.service';
 })
 export class PipelineCarouselComponent {
   componentIndex: number = 0;
+  MAX_COMPONENT_INDEX: number = 2;
 
   constructor(public imageService: ImageService){
     
@@ -29,6 +30,6 @@ export class PipelineCarouselComponent {
 
     this.componentIndex = this.componentIndex + add;
     if(this.componentIndex < 0) this.componentIndex = 0;
-    if(this.componentIndex > 2) this.componentIndex = 1;
+    if(this.componentIndex > this.MAX_COMPONENT_INDEX) this.componentIndex = 1;
   }
 }
